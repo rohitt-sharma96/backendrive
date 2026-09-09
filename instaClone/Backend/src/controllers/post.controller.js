@@ -106,6 +106,27 @@ async function likePost(req, res) {
 
 }
 
+async function unLikePost(req, res){
+    const postId = req.params.postId;
+    const username = req.user.username;
+
+    const isLiked = await likeModel.findOne({
+        postId,
+        user: username
+    })
+
+    if(!isLiked){
+        return res.status(400).json({
+            message:"tumne like nhi kiya h post ko"
+        })
+    }
+
+    await likeModel.findByIdAndDelete(isLiked._id)
+    res.status(200).json({
+        message:"unlike successfully",
+    })
+
+}
 
 async function getFeed(req, res) {
     /* Readable Format
@@ -131,7 +152,7 @@ async function getFeed(req, res) {
     const user = req.user;
 
     const posts = await Promise.all(
-        (await postModel.find().populate("userId").lean())
+        (await postModel.find().populate("userId").lean()) //.sort({_id: -1}) id ke basis pe reverse krta hai
 
         .map(async (post) => {
 
@@ -171,4 +192,4 @@ async function getFeed(req, res) {
 }
 
 
-module.exports = { createPost, getPost, getPostDetails, likePost, getFeed }
+module.exports = { createPost, getPost, getPostDetails, likePost, unLikePost, getFeed }

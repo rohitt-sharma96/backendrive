@@ -12,6 +12,7 @@ const identifyUser = require('../middlewares/auth.middleware')
 /**
  *@route POST /api/posts [protected]
  *@description req.body {caption, img-file}
+ *@access Protected
  */
 postRouter.post("/", identifyUser, upload.single('image'),   postController.createPost);
 
@@ -39,6 +40,7 @@ postRouter.get("/details/:postId", identifyUser, postController.getPostDetails);
  */
 
 postRouter.post("/like/:postId", identifyUser, postController.likePost);
+postRouter.post("/unlike/:postId", identifyUser, postController.unLikePost);
 
 
 /**

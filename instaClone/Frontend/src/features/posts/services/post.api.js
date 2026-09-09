@@ -17,3 +17,43 @@ export const getFeed = async () => {
         throw err;
     }
 }
+
+export const createPost = async (imageFile, caption) =>{
+    
+    try{
+
+        const formData = new FormData();
+
+        formData.append("image",imageFile);
+        formData.append("caption", caption)
+        
+        
+        const response = await api.post("/", formData);
+        return response.data;
+    }
+    catch(err){
+        throw err;
+    }
+}
+
+export const likePost = async (postId) =>{
+
+    try{
+        const response = await api.post(`/like/${postId}`);
+        return response.data;
+    }
+    catch(err){
+        throw err;
+    }
+}
+
+
+export const unlikePost = async (postId) =>{
+    try{
+        const response = await api.post(`/unlike/${postId}`)
+        return response.data;
+    }
+    catch(err){
+        throw err;
+    }
+}

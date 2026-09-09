@@ -1,12 +1,13 @@
 import Post from '../components/Post';
 import '../style/feed.scss';
 
-import { usePost } from '../hooks/usePosts';
+import { usePosts } from '../hooks/usePosts';
 import { useEffect } from 'react';
+import Nav from '../../shared/components/Nav';
 
 const Feed = () => {
 
-    const { handleGetFeed, loading, feed } = usePost();
+    const { handleGetFeed, loading, feed } = usePosts();
 
     useEffect(() => {
         handleGetFeed();
@@ -26,6 +27,7 @@ const Feed = () => {
 
     return (
         <main className="feed-page">
+            <Nav />
             <div className="feed">
                 <div className="posts">
 
