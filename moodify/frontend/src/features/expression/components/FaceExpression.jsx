@@ -9,7 +9,7 @@ export default function FaceExpression({ onClick = () => { } }) {
     const streamRef = useRef(null);
 
     const [ expression, setExpression ] = useState("Detecting...");
-    console.log(expression)
+      
 
     useEffect(() => {
         init({ landmarkerRef, videoRef, streamRef });//Init called Here
