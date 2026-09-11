@@ -1,4 +1,5 @@
 const userModel = require('../models/user.model')
+const blacklistModel = require('../models/blacklist.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -37,7 +38,7 @@ const login = async (req, res) => {
 
     const user = await userModel.findOne({
         $or: [{ username }, { email }]
-    })
+    }).select("+password")
 
     if (!user) {
         return res.status(409).json({
@@ -68,4 +69,44 @@ const login = async (req, res) => {
 
 }
 
-module.exports = { register, login }
+const getMe = async (req, res) =>{
+    const {id} = req.user
+    console.log(id)
+
+
+    const user = await userModel.findById(id);
+
+    if(!user){
+        return res.status(404).json({
+            message:"user not found"
+        })
+    }
+
+    res.status(200).json({
+        message:"fetched successfully",
+        user
+    })
+}
+
+const logout = async (req, res) => {
+    const token = req.cookies.token
+
+    if(!token){
+        return res.status(401).json({
+            message:"Token not provided"
+        })
+    }
+
+    res.clearCookie("token");
+
+
+    await blacklistModel.create({
+        token
+    })
+
+    res.status(200).json({
+        message:"logout successful"
+    })
+}
+
+module.exports = { register, login, getMe, logout }
