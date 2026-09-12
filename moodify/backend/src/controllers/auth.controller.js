@@ -2,12 +2,13 @@ const userModel = require('../models/user.model')
 const blacklistModel = require('../models/blacklist.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const redis = require('../config/cache')
 
 const register = async (req, res) => {
     const { username, email, password } = req.body;
 
     const isExist = await userModel.findOne({
-        $: or[{ username }, { email }]
+        $or:[{ username }, { email }]
     })
 
     if (isExist) {
@@ -60,30 +61,30 @@ const login = async (req, res) => {
     res.status(200).json({
         message: "successfully login",
         user: {
+            id: user._id,
             username: user.username,
             email: user.email,
-            password: user.password
-        }
 
+        }
     })
 
 }
 
-const getMe = async (req, res) =>{
-    const {id} = req.user
+const getMe = async (req, res) => {
+    const { id } = req.user
     console.log(id)
 
 
     const user = await userModel.findById(id);
 
-    if(!user){
+    if (!user) {
         return res.status(404).json({
-            message:"user not found"
+            message: "user not found"
         })
     }
 
     res.status(200).json({
-        message:"fetched successfully",
+        message: "fetched successfully",
         user
     })
 }
@@ -91,21 +92,23 @@ const getMe = async (req, res) =>{
 const logout = async (req, res) => {
     const token = req.cookies.token
 
-    if(!token){
+    if (!token) {
         return res.status(401).json({
-            message:"Token not provided"
+            message: "Token not provided"
         })
     }
 
-    res.clearCookie("token");
+    res.clearCookie("token");// removed from browser cookie //
+
+    //Clearing the cookie
+    //res.clearCookie('title');s
 
 
-    await blacklistModel.create({
-        token
-    })
+    await redis.set(token, Date.now().toString()); //save in redis DB
+    await redis.expire(token, 60 * 60);
 
     res.status(200).json({
-        message:"logout successful"
+        message: "logout successful"
     })
 }
 
