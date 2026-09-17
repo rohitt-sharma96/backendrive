@@ -12,12 +12,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@langchain/core": "^1.2.11",
+    "@langchain/google-genai": "^2.3.2",
+    "@langchain/mistralai": "^1.2.0",
+    "@langchain/openai": "^1.5.13",
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
     "jsonwebtoken": "^9.0.3",
+    "langchain": "^1.5.11",
     "mongoose": "^9.10.1",
     "nodemailer": "^10.0.10"
   }

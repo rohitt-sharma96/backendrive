@@ -17,13 +17,32 @@ const validate = (req, res, next) => {
 
 
 
-const registerValidator = [
-    body("username").isString().withMessage("username string daal"),
+export const registerValidator = [
+    body("username").trim().notEmpty().withMessage("email is required").isString().withMessage("username string daal"),
     body("email").isEmail().withMessage("email daal"),
     body("password").isLength({ min: 6, max: 12 }).withMessage("between 6 to 12"),
 
     validate
 ]
 
-export default registerValidator;
+export const loginValidator = [
+    body("username")
+    .trim()
+    .notEmpty().withMessage("email is required")
+    .isString().withMessage("username string daal"),
+
+    //client side se only {username and password} le rahe hai
+
+    // body("email")
+    // .trim().notEmpty().withMessage("email is required")
+    // .isEmail().withMessage("enter valid email"),
+
+
+    body("password")
+    .trim().notEmpty().withMessage("password is required")
+    .isLength({ min: 6, max: 12 }).withMessage("Enter password between 6 to 12"),
+
+    validate
+]
+
 

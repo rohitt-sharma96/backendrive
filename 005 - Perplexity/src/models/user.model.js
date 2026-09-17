@@ -29,15 +29,15 @@ const userSchema = new mongoose.Schema({
 
 //explanation of these middleware are at lin 49
 
-userSchema.pre('save', async function(){
-    if(!this.isModified('password')) return next();
+userSchema.pre('save', async function () {
+    if (!this.isModified('password')) return;
 
-     this.password = await bcrypt.hash(this.password, 10)
-     
+    this.password = await bcrypt.hash(this.password, 10)
+
 })
 
 
-userSchema.methods.comparePassword = async function(userPassword){
+userSchema.methods.comparePassword = async function (userPassword) {
     return bcrypt.compare(userPassword, this.password)
 }
 
@@ -47,7 +47,7 @@ userSchema.methods.comparePassword = async function(userPassword){
  const user = await userModel.findOne({email})
  user.comparePassword('plainTextPassword) <-- Ye user ke andar method rehta hai
  */
-    
+
 
 const userModel = mongoose.model('users', userSchema);
 
