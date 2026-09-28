@@ -18,7 +18,7 @@ transporter.verify()
     console.log("Email transporter is ready do send emails")
 })
 .catch((err)=>{
-    console.error("Email transporter verification failed", err)
+    // console.error("Email transporter verification failed", err)
 })
 
 export const sendEmail = async({to, subject, html, text}) =>{

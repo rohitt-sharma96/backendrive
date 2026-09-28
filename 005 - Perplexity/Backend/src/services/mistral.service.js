@@ -1,4 +1,3 @@
-import { ChatMistralAI } from "@langchain/mistralai"
 
 const llm = new ChatMistralAI({
     model: "mistral-tiny",
@@ -9,6 +8,12 @@ const llm = new ChatMistralAI({
 })
 
 
+
+
+
+
+
+/*
 export async function test() {
 
     try {
@@ -20,4 +25,4 @@ export async function test() {
     catch (err) {
         console.log('No response', err)
     }
-}
+}*/

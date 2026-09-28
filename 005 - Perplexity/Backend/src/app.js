@@ -28,8 +28,10 @@ app.get('/', (req, res) => {
  * Routes
  */
 import authRouter from './routes/auth.route.js';
+import chatRouter from './routes/chat.route.js';
 
 app.use('/api/auth', authRouter);
+app.use('/api/chats', chatRouter);
 
 
 export default app;
