@@ -32,20 +32,21 @@ const chatSlice = createSlice({
         },
 
 
-        //IMP
-        addChats: (state, action) => {
-            const { chat, userMessage, aiMessage } = action.payload
+        /*IMP AI this one feels easy
+        // addChats: (state, action) => {
+        //     const { chat, userMessage, aiMessage } = action.payload
 
-            state.chats[chat._id] = {
-                id: chat._id,
-                title: chat.title,
-                messages: [
-                    userMessage,
-                    aiMessage
-                ]
-            }
-        },
-
+        //     state.chats[chat._id] = {
+        //         id: chat._id,
+        //         title: chat.title,
+        //         messages: [
+        //             userMessage,
+        //             aiMessage
+        //         ]
+        //     }
+        // },
+        */
+        
         setChats: (state, action) => {
             state.chats = action.payload;
         },

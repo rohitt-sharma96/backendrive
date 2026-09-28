@@ -14,22 +14,22 @@ export const useChat = () => {
         dispatch(setLoading(true))
         try {
             const data = await sendMessage({ message, chatId });
-            const { chat, aiMessage } = data
-            dispatch(addChats(data))
-            // dispatch(createNewChats({
-            //     chatId: chat._id,
-            //     title: chat.title,
-            // }))
-            // dispatch(addNewMessage({
-            //     chatId: chat._id,
-            //     content: message,
-            //     role: "user"
-            // }))
-            // dispatch(addNewMessage({
-            //     chatId: chat._id,
-            //     content: aiMessage.content,
-            //     role: 'aiMessage.role'
-            // }))
+            const { chat, aiMessage, userMessage } = data
+            // dispatch(addChats(data))  feel easy this one
+            dispatch(createNewChats({
+                chatId: chat._id,
+                title: chat.title,
+            }))
+            dispatch(addNewMessage({
+                chatId: chat._id,
+                content: userMessage.content,
+                role: userMessage.role
+            }))
+            dispatch(addNewMessage({
+                chatId: chat._id,
+                content: aiMessage.content,
+                role: aiMessage.role
+            }))
             dispatch(setCurrentChatId(chat._id))
         }
         catch (err) {
