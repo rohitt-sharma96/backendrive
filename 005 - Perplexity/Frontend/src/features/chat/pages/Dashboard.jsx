@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useChat } from "../hooks/useChat"
+import ReactMarkdown from "react-markdown"
 
 
 const conversations = [
@@ -92,7 +93,7 @@ const Dashboard = () => {
             <button onClick={()=>{openChat(chat.id)}}
             key={index}
             type="button"
-            className="w-full rounded-xl border border-white/60 bg-transparent px-3 py-2 text-left">
+            className=" cursor-pointer w-full rounded-xl border border-white/60 bg-transparent px-3 py-2 text-left">
               {chat.title}
             </button>
           ))}
@@ -148,7 +149,11 @@ const Dashboard = () => {
                   : 'mr-auto border border-white/50 rounded-bl-none bg-white/12  text-white'
                 }`} >
 
-                <p>{message.content}</p>
+                {message.role === "user" ? (
+                  <p>{message.content}</p>
+                ) : (
+                  <ReactMarkdown>{message.content}</ReactMarkdown>
+                )}
               </div>
             ))}
 

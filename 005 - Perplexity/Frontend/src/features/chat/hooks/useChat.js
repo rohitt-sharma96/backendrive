@@ -2,7 +2,7 @@ import { initializeSocketConnection } from "../services/chat.socket";
 import { useDispatch } from "react-redux";
 
 import { sendMessage, getChats, getMessages, deleteChat } from "../services/chat.api";
-import { setChat, setLoading, setError, setCurrentChatId, createNewChats, addNewMessage, addMessages, addChats } from "../chat.slice";
+import { setChats, setLoading, setError, setCurrentChatId, createNewChats, addNewMessage, addMessages, addChats } from "../chat.slice";
 
 
 
@@ -45,7 +45,7 @@ export const useChat = () => {
         try {
             const data = await getChats()
             const { chats } = data;
-            dispatch(setChat(chats.reduce((acc, chat) => {
+            dispatch(setChats(chats.reduce((acc, chat) => {
                 acc[chat._id] = {
                     id: chat._id,
                     title: chat.title,
