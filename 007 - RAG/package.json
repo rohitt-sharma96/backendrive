@@ -1,0 +1,21 @@
+{
+  "name": "007---rag",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "@langchain/core": "^1.2.14",
+    "@langchain/mistralai": "^1.2.0",
+    "@langchain/textsplitters": "^1.0.2",
+    "@pinecone-database/pinecone": "^9.0.0",
+    "dotenv": "^18.0.5",
+    "install": "^0.13.0",
+    "npm": "^12.2.0",
+    "pdf-parse": "^2.4.5"
+  }
+}
