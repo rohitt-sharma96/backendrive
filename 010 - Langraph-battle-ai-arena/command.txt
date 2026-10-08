@@ -1,0 +1,8 @@
+npm init -y
+npm i -D typescript tsx
+npx tsc --init (for config fle)
+
+
+
+npm i express
+npm i -D @types/express
