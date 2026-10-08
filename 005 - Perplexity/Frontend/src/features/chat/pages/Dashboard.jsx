@@ -22,7 +22,7 @@ const Dashboard = () => {
   const [userInput, setUserInput] = useState("")
   
   const chats = useSelector((state) => state.chat.chats)
-  const currentChatId = useSelector((state) => state.chat.currentChatId)
+  const currentChatId = useSelector((state) => state.chate.currentChatId)
   
   
   const currentChat = chats[currentChatId]
@@ -47,7 +47,7 @@ const Dashboard = () => {
   }
 
   const openChat = (chatId) =>{
-     handleOpenChat(chatId);
+     handleOpenChat(chatId, chats);
   }
 
 
@@ -146,7 +146,7 @@ const Dashboard = () => {
               className={`mx-w-[100%] w-fit rounded-2xl px-4 py-3 text-sm md:text-base
                ${message.role == 'user'
                   ? 'ml-auto border border-white/100 rounded-br-none bg-white/12 text-white'
-                  : 'mr-auto border border-white/50 rounded-bl-none bg-white/12  text-white'
+                  : 'mr-auto border-none  text-white'
                 }`} >
 
                 {message.role === "user" ? (

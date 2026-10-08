@@ -9,13 +9,12 @@ export const sendMessage = async ({message, chatId}) =>{
 
     try{
 
-        const response = await api.post('/message',{message, chatId})
-        console.log(response)
+        const response = await api.post('/message',{message, chat: chatId})
         return response.data;
     }
     catch(err){
 
-        console.log(response.data,'api layer')
+        console.log('sendMessage => api layer')
     }
 }
 
