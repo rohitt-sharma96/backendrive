@@ -1,0 +1,313 @@
+/* ============================================
+   Judge Panel Component Styles
+   ============================================ */
+
+.judge-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  animation: slide-in 0.4s ease;
+}
+
+/* ─── Judge Header ─── */
+.judge-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.judge-icon {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.judge-icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--indigo-400);
+}
+
+.judge-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.judge-subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* ─── Judge Body ─── */
+.judge-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ─── Score Comparison ─── */
+.score-comparison {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.score-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all var(--transition-base);
+}
+
+.score-card.winner-card {
+  border-color: rgba(139, 92, 246, 0.35);
+  background: rgba(139, 92, 246, 0.05);
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.1);
+}
+
+.score-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.score-card-value {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.score-card-value.sol-1-color {
+  background: linear-gradient(135deg, var(--indigo-400), var(--cyan-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.score-card-value.sol-2-color {
+  background: linear-gradient(135deg, var(--violet-400), var(--purple-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.score-card-max {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Score bar */
+.score-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.score-bar-track {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.score-bar-fill.sol-1-bar {
+  background: linear-gradient(90deg, var(--indigo-500), var(--cyan-400));
+}
+
+.score-bar-fill.sol-2-bar {
+  background: linear-gradient(90deg, var(--violet-500), var(--purple-400));
+}
+
+.score-bar-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* Versus */
+.versus-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.versus-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.versus-line {
+  width: 1px;
+  height: 24px;
+  background: var(--border-primary);
+}
+
+/* Winner announcement */
+.winner-announcement {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.06));
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: var(--radius-md);
+}
+
+.winner-trophy {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.winner-announcement-text {
+  flex: 1;
+}
+
+.winner-announcement-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.winner-announcement-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ─── Reasoning Section ─── */
+.reasoning-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reasoning-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.reasoning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.reasoning-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reasoning-card-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.reasoning-card-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.reasoning-card-dot.dot-1 {
+  background: var(--indigo-400);
+}
+
+.reasoning-card-dot.dot-2 {
+  background: var(--violet-400);
+}
+
+.reasoning-card-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.reasoning-card-score-pill {
+  margin-left: auto;
+  padding: 2px 7px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.reasoning-card-score-pill.pill-1 {
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--indigo-400);
+}
+
+.reasoning-card-score-pill.pill-2 {
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--violet-400);
+}
+
+.reasoning-card-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ─── Verdict Banner ─── */
+.verdict-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--border-primary);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  justify-content: center;
+}
+
+.verdict-banner svg {
+  width: 14px;
+  height: 14px;
+  color: var(--amber-400);
+  flex-shrink: 0;
+}
