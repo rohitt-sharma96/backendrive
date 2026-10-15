@@ -7,8 +7,8 @@ import morgan from 'morgan'
 config();
 
 const app = express()
-
 app.use(morgan("dev"))
+
 
 app.get("/health", (req, res) => {
     console.log("Health Check")
@@ -16,6 +16,7 @@ app.get("/health", (req, res) => {
         message: "Health is Fine."
     })
 })
+
 app.use(passport.initialize())
 
 passport.use(new GoogleStrategy({
