@@ -36,3 +36,14 @@ export const registerValidation = [
     validate
 
 ]
+
+
+export const loginValidation = [
+    body("email")
+        .isEmail().withMessage("Invalid email format").trim(),
+    body("password")
+        .isLength({max:12, min:6}).withMessage("Password should be at least 6 to 12 characters long")
+        .notEmpty().withMessage("Password is required"),
+
+    validate
+]

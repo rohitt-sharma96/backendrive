@@ -1,6 +1,7 @@
 import userModel from '../models/user.model.js'
 import jwt from 'jsonwebtoken'
 import { config } from '../config/config.js'
+import bcrypt from 'bcryptjs'
 
 export const sendTokenResponse = async (user, res, message) => {
 
@@ -54,6 +55,36 @@ export const register = async (req, res) => {
         console.error(err)
         return res.status(400).json({ message: "server error" })
     }
+
+
+}
+
+
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+
+
+    const user = await userModel.findOne({ email })
+
+    if (!user) {
+        return res.status(404).json({
+            message: "user not found with this email",
+            success: false,
+            err: "user not found"
+        })
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password)
+
+    if (!isMatch) {
+        return res.status(400).json({
+            message: "Invalid Credentials",
+            success: false,
+            err: "Incorrect Password",
+        })
+    }
+
+    await sendTokenResponse(user, res, "user LoggedIn successfully")
 
 
 }

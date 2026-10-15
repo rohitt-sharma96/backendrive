@@ -1,7 +1,6 @@
-import { register } from "../services/auth.api";
+import { register, login } from "../services/auth.api";
 import { useDispatch } from "react-redux";
 import { setError, setLoading, setUser } from "../state/auth.slice";
-import { createLogger } from "vite";
 
 
 
@@ -25,6 +24,20 @@ export const useAuth = () => {
         }
     }
 
+    const handleLogin = async ({ email, password }) => {
+        dispatch(setLoading(true))
 
-    return { handleRegister }
+        try {
+            const data = await login({ email, password })
+            dispatch(setUser(data.user))
+        }
+        catch (err) {
+            console.log("Error at handleLogin")
+        }
+        finally {
+            dispatch(setLoading(false))
+        }
+    }
+
+    return { handleRegister, handleLogin }
 }
