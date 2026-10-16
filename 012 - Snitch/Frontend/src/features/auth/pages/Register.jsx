@@ -317,6 +317,7 @@ const Register = () => {
                 >
                   {submitting ? 'Creating account…' : <><span>Create Account</span><ArrowIcon /></>}
                 </button>
+                <a className='text-sm text-[#ecae99] group-hover:txt-[#FFD700] cursor-pointer' href='/api/auth/google'>Continue with Google</a>
               </form>
 
               {/* Terms */}
