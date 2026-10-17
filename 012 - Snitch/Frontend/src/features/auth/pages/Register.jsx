@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
+import ContinueWithGoogle from '../components/ContinueWithGoogle'
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -317,7 +318,7 @@ const Register = () => {
                 >
                   {submitting ? 'Creating account…' : <><span>Create Account</span><ArrowIcon /></>}
                 </button>
-                <a className='text-sm text-[#ecae99] group-hover:txt-[#FFD700] cursor-pointer' href='/api/auth/google'>Continue with Google</a>
+                <ContinueWithGoogle withDivider />
               </form>
 
               {/* Terms */}

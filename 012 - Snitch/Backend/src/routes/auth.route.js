@@ -5,6 +5,7 @@ const authRouter = Router();
 import { register, login, googleCallback } from '../controllers/auth.controller.js';
 import { registerValidation, loginValidation } from '../validators/auth.validator.js';
 import passport from 'passport'
+import { config } from '../config/config.js';
 
 
 authRouter.post("/register", registerValidation, register)
@@ -18,7 +19,10 @@ authRouter.get("/google",
 
 
 authRouter.get("/google/callback",
-    passport.authenticate("google", { session: false }),
+    passport.authenticate("google", {
+        session: false,
+        failureRedirect: config.NODE_ENV == "development" ? "http://localhost:5173/login" : "/login"
+    }),
     googleCallback
 
 )

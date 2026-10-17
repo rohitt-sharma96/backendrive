@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
+import ContinueWithGoogle from '../components/ContinueWithGoogle'
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -593,6 +594,7 @@ const Login = () => {
                     </>
                   )}
                 </button>
+                <ContinueWithGoogle withDivider />
               </form>
 
               {/* Security Badge */}

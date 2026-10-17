@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     },
     contact: {
         type: String,
-        required: true,
+        required: false,//Patch
     },
     role: {
         type: String,
@@ -22,8 +22,14 @@ const userSchema = new mongoose.Schema({
         default: "buyer"
     },
     password: {
+        type: String,           //googleId nhi = true
+        required: function () {//googleId hai = false
+            return !this.googleId;
+        }
+    },
+    googleId: {
         type: String,
-        required: true
+        required: false
     }
 })
 
@@ -33,7 +39,7 @@ userSchema.pre("save", async function () {
     this.password = await bcrypt.hash(this.password, 10)
 })
 
-userSchema.methods.comparePassword = async function(userPassword){
+userSchema.methods.comparePassword = async function (userPassword) {
     return await bcrypt.compare(userPassword, this.password)
 }
 
