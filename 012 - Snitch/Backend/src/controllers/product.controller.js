@@ -3,6 +3,7 @@ import { uploadFile } from '../services/storage.service.js';
 
 export const createProduct = async (req, res) => {
     const { title, description, priceAmount, priceCurrency } = req.body;
+    // the data are coming in formData  <--  VVI
     // images are coming in = req.files 
     //Images we getting in Array form
     const seller = req.user; //from middleware
@@ -30,5 +31,27 @@ export const createProduct = async (req, res) => {
         message: "product created successfully",
         success: true,
         product
+    })
+}
+
+
+
+export const getSellerProduct = async (req, res) =>{
+    const seller = req.user;
+
+    const products = await productModel.find({seller: seller._id})
+
+    if(!products){
+        return res.status(404).json({
+            message:"products not found",
+            success: false,
+            err:"You have not created any products yet."
+        })
+    }
+
+    res.status(200).json({
+        message:"Products fetched successfully",
+        success:true,
+        products
     })
 }
