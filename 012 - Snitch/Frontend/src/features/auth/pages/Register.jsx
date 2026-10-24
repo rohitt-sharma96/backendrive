@@ -199,7 +199,14 @@ const MobileBar = () => (
 const Register = () => {
   const navigate = useNavigate();
   const { handleRegister } = useAuth()
-  const [form, setForm] = useState({ fullname: '', email: '', contact: '', password: '', isSeller: false })
+  const [form, setForm] = useState(
+    {
+      fullname: '',
+      email: '',
+      contact: '',
+      password: '',
+      isSeller: false 
+    })
   const [showPw, setShowPw] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
